@@ -369,7 +369,7 @@ def show_completion():
 
 # Main app flow
 def main():
-    st.title("🎵 Text-to-Reverb Subjective Evaluation")
+    st.title("🎵 Text-to-Reverb Evaluation")
     st.markdown("""
     ### Task:
     Thank you for participating in this evaluation! This will take **10** minutes. The task is to evaluate a text-to-reverb model, which takes a text description of a space and generates a reverb impulse response.
