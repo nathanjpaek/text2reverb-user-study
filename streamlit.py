@@ -375,8 +375,8 @@ def main():
     Thank you for participating in this evaluation! This will take **10** minutes. The task is to evaluate a text-to-reverb model, which takes a text description of a space and generates a reverb impulse response.
 
     ### Instructions:
-    1. **Listen carefully** to both the dry and wet audio samples
-    2. **Read the text description** thoroughly
+    1. **Read the text description** thoroughly
+    2. **Listen carefully** to both the dry and wet audio samples
     3. **Rate** the wet audio based on:
        - Overall reverb quality
        - How well the reverb matches the text description
