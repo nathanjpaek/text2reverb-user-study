@@ -57,10 +57,10 @@ def load_evaluation_samples():
     # evaluation_samples/
     #   category_name/
     #     sample_id/
-    #       text_prompt.txt
-    #       anechoic.wav
-    #       generated_reverb.wav
-    #       ground_truth_reverb.wav (for comparison if available)
+    #       description.txt
+    #       dry_audio.wav
+    #       text2reverb_wet.wav
+    #       ground_truth_wet.wav (for comparison if available)
     
     # Check if samples directory exists
     if not os.path.exists(SAMPLES_DIR):
@@ -79,10 +79,10 @@ def load_evaluation_samples():
                 continue
                 
             # Check for required files
-            anechoic_path = os.path.join(sample_path, "anechoic.wav")
-            generated_path = os.path.join(sample_path, "generated_reverb.wav")
-            ground_truth_path = os.path.join(sample_path, "ground_truth_reverb.wav")
-            text_prompt_path = os.path.join(sample_path, "text_prompt.txt")
+            anechoic_path = os.path.join(sample_path, "dry_audio.wav")
+            generated_path = os.path.join(sample_path, "text2reverb_wet.wav")
+            ground_truth_path = os.path.join(sample_path, "ground_truth_wet.wav")
+            text_prompt_path = os.path.join(sample_path, "description.txt")
             
             # Load text prompt if available
             if os.path.exists(text_prompt_path):

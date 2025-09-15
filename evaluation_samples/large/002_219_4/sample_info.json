@@ -1,0 +1,10 @@
+{
+  "base_name": "219_4",
+  "description": "An industrial warehouse with a high ceiling and sturdy metal beams is illuminated by multiple spotlights. The warehouse floor is a light brown color and appears to be made of concrete. Along one wall, facing the camera, a series of large, white metal doors are visible.  In the background, a white building with multiple windows is present, and next to it, a smaller white structure with a possible window is visible as well. A white wire or cable is also visible in the lower right corner of the image.",
+  "files": {
+    "image": "219_4_label.jpg",
+    "audio": "219_4_img.wav",
+    "description": "219_4_label.txt"
+  },
+  "dry_audio_source": "VCTK-Corpus_VCTK-Corpus_wav48_p336_p336_142_seg001.wav"
+}
