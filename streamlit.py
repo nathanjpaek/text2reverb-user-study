@@ -335,7 +335,7 @@ def save_to_github_gist(results):
             gist_data = response.json()
             gist_url = gist_data['html_url']
             gist_id = gist_data['id']
-            return True, f"Results saved to GitHub Gist! [View Gist]({gist_url})"
+            return True, f"Results saved to GitHub Gist!"
         else:
             return False, f"Failed to save to GitHub Gist. Status: {response.status_code}"
             
