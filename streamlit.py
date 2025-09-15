@@ -385,16 +385,15 @@ def main():
     st.title("🎵 Text-to-Reverb Evaluation")
     st.markdown("""
     ### Task:
-    Thank you for participating in this evaluation! This is a blind test to evaluate reverb generation methods. You will hear multiple reverb samples for different spaces.
+    Thank you for participating in this evaluation! This will take **10** minutes. The task is to evaluate different text-to-reverb models, which take a text description of a space and generate a reverb impulse response.
 
     ### Instructions:
     1. **Read the text description** thoroughly
-    2. **Listen carefully** to both the dry and wet audio samples
-    3. **Rate** the wet audio based on:
+    2. **Listen carefully** to both the dry and wet (with reverb) audio samples
+       - There will be 3 wet audio samples for each text description
+    3. **Rate** each wet audio sample based on:
        - Overall reverb quality
        - How well the reverb matches the text description
-    
-    **Note:** This is a blind test - you won't know which method generated each reverb.
     """)
     
     # Initialize samples if not already done
