@@ -4,6 +4,7 @@ import json
 import random
 from pathlib import Path
 from datetime import datetime
+import requests
 
 # Initialize session state
 if 'current_sample_idx' not in st.session_state:
@@ -296,6 +297,51 @@ def evaluation_interface():
                 st.session_state.current_sample_idx += 1
                 st.rerun()
 
+def save_to_github_gist(results):
+    """Save evaluation results to GitHub Gist"""
+    try:
+        # Check if we have GitHub token in secrets
+        if "github_token" not in st.secrets:
+            return False, "GitHub token not configured in Streamlit secrets"
+        
+        github_token = st.secrets["github_token"]
+        
+        # Prepare gist data
+        filename = f"text2reverb_evaluation_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+        
+        headers = {
+            'Authorization': f'token {github_token}',
+            'Accept': 'application/vnd.github.v3+json'
+        }
+        
+        data = {
+            'description': f'Text2Reverb Evaluation Results - {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}',
+            'public': False,  # Make it private
+            'files': {
+                filename: {
+                    'content': json.dumps(results, indent=2)
+                }
+            }
+        }
+        
+        # Create gist
+        response = requests.post(
+            'https://api.github.com/gists',
+            headers=headers,
+            json=data
+        )
+        
+        if response.status_code == 201:
+            gist_data = response.json()
+            gist_url = gist_data['html_url']
+            gist_id = gist_data['id']
+            return True, f"Results saved to GitHub Gist! [View Gist]({gist_url})"
+        else:
+            return False, f"Failed to save to GitHub Gist. Status: {response.status_code}"
+            
+    except Exception as e:
+        return False, f"Error saving to GitHub Gist: {str(e)}"
+
 def show_completion():
     """Show completion screen and save results"""
     st.balloons()
@@ -307,12 +353,19 @@ def show_completion():
         'completion_time': datetime.now().isoformat()
     }
     
-    # Save to JSON file
+    # Save to JSON file locally (backup)
     filename = f"{RESULTS_DIR}/evaluation_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
     with open(filename, 'w') as f:
         json.dump(results, f, indent=2)
     
-    st.info(f"Your responses have been saved. Reference ID: {Path(filename).stem}")
+    # Try to save to GitHub Gist
+    success, message = save_to_github_gist(results)
+    if success:
+        st.success(f"✅ {message}")
+    else:
+        st.warning(f"⚠️ {message}")
+        st.info(f"Results saved locally. Reference ID: {Path(filename).stem}")
+    
 
 # Main app flow
 def main():
