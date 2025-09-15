@@ -1,0 +1,12 @@
+{
+  "base_name": "231_10",
+  "long_description": "A luxurious entryway features a grand staircase ascending to a red carpeted landing at the top. A large crystal chandelier hangs from the ceiling, casting a warm glow over the space. Flanking the staircase are potted plants, adding a touch of nature to the elegant setting. White walls with decorative molding and paneling contrast with the polished wood flooring. A large square rug, with intricate border patterns, covers the floor, enhancing the overall aesthetic. On the right side of the entryway, a black console table holds an arrangement of vases and decorative items. On the left, a small, upholstered bench invites visitors to sit and relax. The ceiling has a recessed lighting feature, creating a soft, inviting ambiance.",
+  "short_description": "grand entrance hall; large; marble, wood, glass; 10; medium (0.8 s)",
+  "files": {
+    "image": "231_10_label.jpg",
+    "audio": "231_10_img.wav",
+    "long_description": "231_10_label.txt",
+    "short_description": "231_10_label.txt"
+  },
+  "dry_audio_source": "VCTK-Corpus_VCTK-Corpus_wav48_p267_p267_265_seg001.wav"
+}

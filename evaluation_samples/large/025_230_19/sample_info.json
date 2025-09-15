@@ -1,0 +1,12 @@
+{
+  "base_name": "230_19",
+  "long_description": "In the center of a room with light-colored wooden walls and a matching wooden floor, a majestic black grand piano stands proudly. The piano, its lid open and raised, is positioned on a light-colored wooden stage that also features a small, dark-colored bench. To the right of the stage, a window draped with dark curtains lets in a soft, diffused light. On the left side of the image, a stack of books rests casually. A set of double doors is visible on the right side of the room. Above the piano, the ceiling is adorned with recessed lighting fixtures that illuminate the room with bright light.",
+  "short_description": "small music room; small; wood, glass; 10; medium (0.7 s)",
+  "files": {
+    "image": "230_19_label.jpg",
+    "audio": "230_19_img.wav",
+    "long_description": "230_19_label.txt",
+    "short_description": "230_19_label.txt"
+  },
+  "dry_audio_source": "VCTK-Corpus_VCTK-Corpus_wav48_p252_p252_287_seg001.wav"
+}

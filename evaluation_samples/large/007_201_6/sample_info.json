@@ -1,0 +1,12 @@
+{
+  "base_name": "201_6",
+  "long_description": "A Gothic cathedral, constructed primarily from cream or beige stone, exudes a sense of serenity with its tall, majestic arches and pointed windows. The viewer's perspective is from the back of the cathedral, looking towards the altar at the far end, which is situated on a raised platform. The altar is a focal point, adorned with an intricate design. The cathedral's interior isadjacent by several columns and features multiple levels of seating, made of light brown wood, in the foreground. The ceiling is a peach or pink color, adding to the overall warm and inviting atmosphere. The lighting within the cathedral is soft and diffused, with no visible stained glass windows or chandeliers.",
+  "short_description": "cathedral interior; vast; stone, wood, glass; 10; very_long (>3.0 s)",
+  "files": {
+    "image": "201_6_label.jpg",
+    "audio": "201_6_img.wav",
+    "long_description": "201_6_label.txt",
+    "short_description": "201_6_label.txt"
+  },
+  "dry_audio_source": "VCTK-Corpus_VCTK-Corpus_wav48_p318_p318_360_seg001.wav"
+}

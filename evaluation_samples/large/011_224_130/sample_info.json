@@ -1,0 +1,12 @@
+{
+  "base_name": "224_130",
+  "long_description": "A church interior features a large, ornately decorated altar, made of a dark material, possibly wood or stone, with a gold and black design. A painting, likely depicting a religious figure, adorns the wall behind the altar. Tall, white columns with intricate designs surround the space. In the foreground, rows of dark wooden pews face the altar. The floor is covered in black and white checkered tiles. A person is seen standing near the left side of the image, partially obscured by the pews. The interior appears to be a large, ornate church or cathedral.",
+  "short_description": "church interior; large; plaster, wood, marble; 10; long (1.5 s)",
+  "files": {
+    "image": "224_130_label.jpg",
+    "audio": "224_130_img.wav",
+    "long_description": "224_130_label.txt",
+    "short_description": "224_130_label.txt"
+  },
+  "dry_audio_source": "VCTK-Corpus_VCTK-Corpus_wav48_p271_p271_085_seg001.wav"
+}

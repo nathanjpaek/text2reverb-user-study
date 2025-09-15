@@ -80,9 +80,9 @@ def load_evaluation_samples():
                 
             # Check for required files
             anechoic_path = os.path.join(sample_path, "dry_audio.wav")
-            generated_path = os.path.join(sample_path, "text2reverb_wet.wav")
+            generated_path = os.path.join(sample_path, "text2reverb_long_wet.wav")
             ground_truth_path = os.path.join(sample_path, "ground_truth_wet.wav")
-            text_prompt_path = os.path.join(sample_path, "description.txt")
+            text_prompt_path = os.path.join(sample_path, "long_description.txt")
             
             # Load text prompt if available
             if os.path.exists(text_prompt_path):
