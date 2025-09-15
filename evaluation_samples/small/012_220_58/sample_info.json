@@ -1,0 +1,12 @@
+{
+  "base_name": "220_58",
+  "long_description": "A large blue room is set up for a performance or presentation.  A raised green stage is positioned in the center, with a black speaker on a stand to its left.  A microphone stand with a microphone is situated in the right middle of the room.  The floor is covered in blue tiles and appears clean and ready for performance.  There are also folding tables and chairs arranged in the background, along with a white cabinet or table. A piece of equipment, possibly a keyboard or control panel, is visible on the left side of the room near the cabinet.",
+  "short_description": "small recording studio; small; concrete, metal, glass; 50; medium (0.7 s)",
+  "files": {
+    "image": "220_58_label.jpg",
+    "audio": "220_58_img.wav",
+    "long_description": "220_58_label.txt",
+    "short_description": "220_58_label.txt"
+  },
+  "dry_audio_source": "mahler_bsn2_5_seg006.wav"
+}

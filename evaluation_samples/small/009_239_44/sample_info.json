@@ -1,0 +1,12 @@
+{
+  "base_name": "239_44",
+  "long_description": "A dimly lit stage, constructed of wood, is bathed in the soft glow of white spotlights. The stage floor appears to be dirt or a similar dark surface. A microphone stand stands on the stage. In the foreground, a computer monitor is positioned, though its screen is not illuminated . . . Various pieces of equipment and equipment are scattered across the stage, and what appears to be a drum set is partially obscured by the lighting. The stage walls feature some decorations or fabric elements, but they are not easily identifiable. Behind the stage, a portion of a curtain or backdrop is visible. The chairs on the stage are a dark color, possibly black or dark brown.",
+  "short_description": "small theater; small; wood, metal, glass; 10; medium (0.7 s)",
+  "files": {
+    "image": "239_44_label.jpg",
+    "audio": "239_44_img.wav",
+    "long_description": "239_44_label.txt",
+    "short_description": "239_44_label.txt"
+  },
+  "dry_audio_source": "VCTK-Corpus_VCTK-Corpus_wav48_p323_p323_337_seg001.wav"
+}

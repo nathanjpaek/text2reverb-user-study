@@ -82,6 +82,7 @@ def load_evaluation_samples():
             anechoic_path = os.path.join(sample_path, "dry_audio.wav")
             generated_path = os.path.join(sample_path, "text2reverb_long_wet.wav")
             ground_truth_path = os.path.join(sample_path, "ground_truth_wet.wav")
+            image_generated_path = os.path.join(sample_path, "image2reverb_wet.wav")
             text_prompt_path = os.path.join(sample_path, "long_description.txt")
             
             # Load text prompt if available
@@ -93,12 +94,12 @@ def load_evaluation_samples():
                 sample_num = int(sample_dir.split('_')[-1]) if '_' in sample_dir else 0
                 text_prompt = get_demo_text_prompt(category, sample_num)
             
-            # Add sample for generated reverb if exists
+            # Add sample for text2reverb if exists
             if os.path.exists(anechoic_path) and os.path.exists(generated_path):
                 samples.append({
-                    'id': f"{category}_{sample_dir}_generated",
+                    'id': f"{category}_{sample_dir}_text2reverb",
                     'category': category,
-                    'condition': 'generated',
+                    'condition': 'text2reverb',  # Keep for backend tracking
                     'sample_dir': sample_dir,
                     'text_prompt': text_prompt,
                     'anechoic_path': anechoic_path,
@@ -110,11 +111,23 @@ def load_evaluation_samples():
                 samples.append({
                     'id': f"{category}_{sample_dir}_ground_truth",
                     'category': category,
-                    'condition': 'ground_truth',
+                    'condition': 'ground_truth',  # Keep for backend tracking
                     'sample_dir': sample_dir,
                     'text_prompt': text_prompt,
                     'anechoic_path': anechoic_path,
                     'reverb_path': ground_truth_path
+                })
+            
+            # Add sample for image2reverb if exists
+            if os.path.exists(anechoic_path) and os.path.exists(image_generated_path):
+                samples.append({
+                    'id': f"{category}_{sample_dir}_image2reverb",
+                    'category': category,
+                    'condition': 'image2reverb',  # Keep for backend tracking
+                    'sample_dir': sample_dir,
+                    'text_prompt': text_prompt,
+                    'anechoic_path': anechoic_path,
+                    'reverb_path': image_generated_path
                 })
     
     if not samples:
@@ -179,7 +192,7 @@ def evaluation_interface():
     col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown("**Dry Audio:**")
+        st.markdown("**Dry Audio (Original):**")
         anechoic_path = sample['anechoic_path']
         if os.path.exists(anechoic_path):
             st.audio(anechoic_path, format="audio/wav")
@@ -187,7 +200,7 @@ def evaluation_interface():
             st.warning(f"Anechoic audio file not found: {anechoic_path}")
     
     with col2:
-        st.markdown("**Wet Audio (Reverb Applied):**")
+        st.markdown("**Wet Audio (With Reverb):**")
         reverb_path = sample['reverb_path']
         if os.path.exists(reverb_path):
             st.audio(reverb_path, format="audio/wav")
@@ -247,7 +260,7 @@ def evaluation_interface():
                 st.session_state.ratings[sample['id']] = {
                     'sample_id': sample['id'],
                     'category': sample['category'],
-                    'condition': sample['condition'],
+                    'condition': sample['condition'],  # Track which reverb type (hidden from user)
                     'quality': st.session_state[quality_key],
                     'match': st.session_state[match_key],
                     'order_presented': current_idx
@@ -265,7 +278,7 @@ def evaluation_interface():
                 st.session_state.ratings[sample['id']] = {
                     'sample_id': sample['id'],
                     'category': sample['category'],
-                    'condition': sample['condition'],
+                    'condition': sample['condition'],  # Track which reverb type (hidden from user)
                     'quality': st.session_state[quality_key],
                     'match': st.session_state[match_key],
                     'order_presented': current_idx
@@ -287,7 +300,7 @@ def evaluation_interface():
                 st.session_state.ratings[sample['id']] = {
                     'sample_id': sample['id'],
                     'category': sample['category'],
-                    'condition': sample['condition'],
+                    'condition': sample['condition'],  # Track which reverb type (hidden from user)
                     'quality': st.session_state[quality_key],
                     'match': st.session_state[match_key],
                     'order_presented': current_idx
@@ -372,7 +385,7 @@ def main():
     st.title("🎵 Text-to-Reverb Evaluation")
     st.markdown("""
     ### Task:
-    Thank you for participating in this evaluation! This will take **10** minutes. The task is to evaluate a text-to-reverb model, which takes a text description of a space and generates a reverb impulse response.
+    Thank you for participating in this evaluation! This is a blind test to evaluate reverb generation methods. You will hear multiple reverb samples for different spaces.
 
     ### Instructions:
     1. **Read the text description** thoroughly
@@ -380,12 +393,33 @@ def main():
     3. **Rate** the wet audio based on:
        - Overall reverb quality
        - How well the reverb matches the text description
+    
+    **Note:** This is a blind test - you won't know which method generated each reverb.
     """)
     
     # Initialize samples if not already done
     if st.session_state.samples is None:
         samples = load_evaluation_samples()
-        st.session_state.sample_order = random.sample(range(len(samples)), len(samples))
+        
+        # Group samples by sample_dir to keep same text descriptions together
+        sample_groups = {}
+        for idx, sample in enumerate(samples):
+            key = f"{sample['category']}_{sample['sample_dir']}"
+            if key not in sample_groups:
+                sample_groups[key] = []
+            sample_groups[key].append(idx)
+        
+        # Randomize the order of groups and reverb types within each group
+        randomized_order = []
+        group_keys = list(sample_groups.keys())
+        random.shuffle(group_keys)  # Randomize order of text descriptions
+        
+        for key in group_keys:
+            group_indices = sample_groups[key]
+            random.shuffle(group_indices)  # Randomize order of reverb types within group
+            randomized_order.extend(group_indices)
+        
+        st.session_state.sample_order = randomized_order
         st.session_state.samples = samples
     
     # Start evaluation directly
